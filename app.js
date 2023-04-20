@@ -7,10 +7,13 @@ import handleConnection from './events/connection.js';
 import handleDisconnect from './events/disconnect.js';
 import handleMessage from './events/message.js';
 
+import dotenv from "dotenv"
+dotenv.config()
+
 const app = express();
 const http = httpModule.createServer(app);
 const io = new Server(http);
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.resolve('public')));
 app.set('view engine', 'ejs');
