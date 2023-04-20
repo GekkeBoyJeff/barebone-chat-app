@@ -11,6 +11,7 @@ const app = express();
 const http = httpModule.createServer(app);
 const io = new Server(http);
 const port = process.env.PORT || 3000;
+const rooms = {};
 
 app.use(express.static(path.resolve('public')));
 app.set('view engine', 'ejs');
@@ -20,9 +21,9 @@ app.get('/', (request, response) => {
 });
 
 io.on('connection', (socket) => {
-  handleConnection(socket);
-  handleDisconnect(socket);
-  handleMessage(socket, io);
+  handleConnection(socket, rooms);
+  handleDisconnect(socket, rooms);
+  handleMessage(socket, io, rooms);
 });
 
 http.listen(port, () => {

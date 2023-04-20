@@ -1,8 +1,8 @@
 const socket = io();
-const messages = document.querySelector('section ul');
-const input = document.querySelector('input');
+const messages = document.querySelector('.active-chat ul');
+const input = document.querySelector('section.active-chat form input');
 
-document.querySelector('form').addEventListener('submit', (event) => {
+document.querySelector('section.active-chat form').addEventListener('submit', (event) => {
     event.preventDefault();
     if (input.value) {
     socket.emit('message', input.value);

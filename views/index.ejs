@@ -1,12 +1,49 @@
+<%- include('partials/head') %>
 <%- include('partials/header') %>
 <main>
 
-</main><section>
-    <ul></ul>
-  </section>
+<aside>
+  <!-- chat screen left -->
+  <div>
+    <h1>JeffreyChat</h1>
+    <button>+</button>
+  </div>
+  <form>
+    <input type="text" autocomplete="off" />
+    <button>Search</button>
+  </form>
+  <span></span>
+  <ul></ul>
+</aside>
+<section class="active-chat">
+  <!-- chat window -->
+  <header>
+    <img src="" alt="">
+    <h3>Chat with <span></span></h3>
+    <div class="online-status"></div>
+  </header>
+  <ul></ul>
   <form>
     <input type="text" autocomplete="off" />
     <button>Send</button>
   </form>
+</section>
+<!-- info about chat -->
+<section class="extra-info">
+  <button>x</button> <!-- close button -->
+  <header>
+    <h3></h3> <!-- Naam chat / gebruiker -->
+    <img src="" alt="profielfoto">
+  </header>
+  <div>
+    <h4>About chat</h4>
+    <p></p> <!-- about chat -->
+  </div>
+  <div>
+    <h4>Chat members</h4>
+    <ul></ul>
+  </div>
+</section>
 
+</main>
 <%- include('partials/footer') %>
