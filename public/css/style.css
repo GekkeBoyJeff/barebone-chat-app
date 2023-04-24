@@ -30,12 +30,10 @@ aside {
     flex: 0 1 20em;
     max-width: 25em;
     background: var(--radient-color);
-    border-radius: .5em;
     padding: 1em;
     gap: 1em;
     display: flex;
     flex-direction: column;
-    margin: .5em;
 }
 
 section {
@@ -44,7 +42,7 @@ section {
 }
 
 section.active-chat {
-    flex: 0 1 50em;
+    flex: 1 1 50em;
 }
 
 section.extra-info {
@@ -61,10 +59,8 @@ section.extra-info {
 section.active-chat {
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
-    border-radius: .5em;
+    overflow: hidden;
     position: relative;
-    margin: .5em;
 }
 
 section.active-chat form {
@@ -82,7 +78,7 @@ section.active-chat form {
 
 section.active-chat form input,
 section.active-chat form button {
-    height: 3.5em;
+    height: 4.5em;
     border: none;
     background: unset;
 }
@@ -103,7 +99,7 @@ section.active-chat header {
     display: flex;
     align-items: center;
     background: var(--radient-color);
-    /* box-shadow: 0 0 17px 0px var(--primary-darker); */
+    box-shadow: 0 0 17px 0px var(--primary-darker);
     gap: .5em;
     padding: 0 1em;
     z-index: 1;
@@ -114,6 +110,7 @@ section.active-chat ul {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    width: calc(100% + 20px);
 }
 
 main::before,
@@ -304,5 +301,9 @@ li.eigen-bericht address.user {
 
     main:has(section.hide) aside {
         display: none;
+    }
+
+    button:hover {
+        transform: unset;
     }
 }
