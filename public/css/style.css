@@ -22,10 +22,7 @@ body>header {
 main {
     display: flex;
     overflow: hidden;
-    margin: 1em;
-    border-radius: .5em;
-    gap: .5em;
-    height: 97vh;
+    max-height: 100dvh;
 }
 
 aside {
@@ -37,6 +34,7 @@ aside {
     gap: 1em;
     display: flex;
     flex-direction: column;
+    margin: .5em;
 }
 
 section {
@@ -65,6 +63,7 @@ section.active-chat {
     overflow-y: hidden;
     border-radius: .5em;
     position: relative;
+    margin: .5em;
 }
 
 section.active-chat form {
@@ -112,12 +111,14 @@ section.active-chat header {
 section.active-chat ul {
     height: 45em;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 main::before,
 main::after {
     content: '';
-    position: absolute;
+    position: fixed;
     height: 20em;
     width: 20em;
     border-radius: 25em;
@@ -142,7 +143,8 @@ body {
 }
 
 section.active-chat ul li {
-    background: var(--primary-darker);
+    filter: hue-rotate(45deg) grayscale(.8);
+    background: var(--radient-color);
     padding: 1em;
     width: fit-content;
     width: -moz-fit-content;
@@ -267,4 +269,39 @@ aside ul {
     display: flex;
     flex-direction: column;
     gap: .5em;
+}
+
+section.active-chat ul li.eigen-bericht {
+    align-self: end;
+    background: var(--radient-color);
+    filter: unset;
+    position: relative;
+}
+
+address.user {
+    position: relative;
+    top: -.75em;
+}
+
+li.eigen-bericht address.user {
+    display: none;
+}
+
+@media (max-width:800px) {
+    .hide {
+        display: none;
+    }
+
+    main {
+        overflow: hidden;
+    }
+
+    aside {
+        flex: 1 1 20em;
+        display: none;
+    }
+
+    main:has(section.hide) aside {
+        display: none;
+    }
 }
