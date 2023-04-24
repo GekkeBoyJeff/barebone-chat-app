@@ -1,7 +1,8 @@
 const handleConnection = (socket) => {
-    console.log('a user connected');
-    console.log('server socket.id', socket.id);
-    // addMessage(socket, 'Welcome to the chat!');
+    socket.on('connect', () => {
+      console.log('a user connected');
+      console.log('server socket.id', socket.id);
+    })
   };
   
   export default handleConnection;

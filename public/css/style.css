@@ -23,6 +23,7 @@ main {
     display: flex;
     overflow: hidden;
     max-height: 100dvh;
+    height: 100dvh;
 }
 
 aside {

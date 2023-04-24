@@ -1,13 +1,11 @@
 const socket = io();
 const messages = document.querySelector('.active-chat ul');
 const input = document.querySelector('section.active-chat form input');
-const username = prompt('Wat is jouw naam?');
+const username = prompt('Wat is jouw naam?') || 'Anoniem';
 
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
     socket.emit('message', {user: 'Server', text: `Welcome to the chat! ${username}`});
-    // broadcast
-    socket.broadcast.emit('message', {user: 'Server', text: `${username} has joined the chat!`});
 });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {
