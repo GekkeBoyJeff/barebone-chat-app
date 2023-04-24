@@ -12,7 +12,14 @@ dotenv.config()
 
 const app = express();
 const http = httpModule.createServer(app);
-const io = new Server(http);
+const io = new Server(http, {
+  connectionStateRecovery: {
+    // https://socket.io/docs/v4/connection-state-recovery
+    enabled: true,
+    maxDisconnectionDuration: 2 * 60 * 1000,
+    skipMiddlewares: true,
+  } 
+});
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.resolve('public')));
