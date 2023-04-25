@@ -356,4 +356,9 @@ aside ul::-webkit-scrollbar-track {
     button:hover {
         transform: unset;
     }
+
+    section.active-chat {
+        margin: unset;
+        border-radius: 0;
+    }
 }
