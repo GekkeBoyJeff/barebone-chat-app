@@ -106,6 +106,7 @@ section.active-chat header {
     min-height: 4em;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: .5em;
     padding: 0 1em;
     z-index: 1;
@@ -333,6 +334,20 @@ aside ul::-webkit-scrollbar-thumb {
 
 aside ul::-webkit-scrollbar-track {
     background: #fff;
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+section.active-chat header button {
+    font-size: 1.5em;
+    font-family: monospace;
+    color: #092a2a;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 @media (max-width:800px) {

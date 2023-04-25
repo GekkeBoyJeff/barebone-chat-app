@@ -19,28 +19,8 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
     }
   });
 
-socket.on('message', (message) => {
-    const element = document.createElement('li');
-
-    const user = document.createElement('address'); 
-    user.textContent = message.user;
-    user.classList.add('user');
-
-    const text = document.createElement('p');
-    text.textContent = message.text;
-    text.classList.add('text');
-
-    // append user and text to element
-    element.appendChild(user);
-    element.appendChild(text);
-
-    if (message.user == username) {
-        console.log(username)
-        element.classList.add('eigen-bericht');
-    }
-
-    messages.appendChild(element);
-    messages.scrollTop = messages.scrollHeight;
+  socket.on('message', (message) => {
+    displayMessage(message);
 });
 
 // rooms
@@ -103,3 +83,10 @@ socket.on('roomList', (roomList) => {
     messages.appendChild(element);
     messages.scrollTop = messages.scrollHeight;
   }
+
+// close chat button
+var closeChat = document.querySelector('section.active-chat header button.close-chat');
+closeChat.addEventListener('click', () => {
+    document.querySelector('section.active-chat').classList.remove('active');
+});
+
