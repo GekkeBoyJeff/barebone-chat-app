@@ -91,6 +91,7 @@ section.active-chat form input {
     /* flex: 1 1 23em; */
     padding: 1em;
     width: 100%;
+    align-self: center;
 }
 
 section.active-chat form button {
@@ -227,6 +228,7 @@ section.active-chat header img {
     border-radius: 25em;
     overflow: hidden;
     border: 1px solid var(--primary-darker);
+    display: none;
 }
 
 section.extra-info header img {
@@ -313,7 +315,7 @@ li.eigen-bericht address.user {
     align-items: center;
 }
 
-h2.yourName {
+h2 {
     color: var(--primary-darker);
     filter: brightness(0.5);
     text-transform: capitalize;
@@ -353,6 +355,7 @@ section.active-chat header button {
     color: #092a2a;
     font-weight: 700;
     text-transform: uppercase;
+    display: none;
 }
 
 li.active {
@@ -386,5 +389,19 @@ li.active {
     section.active-chat {
         margin: unset;
         border-radius: 0;
+    }
+
+    section.active-chat header button {
+        display: flex;
+    }
+
+    section.hide {
+        display: none;
+    }
+
+    body main aside.show {
+        display: flex;
+        padding: 0;
+        margin: 1em;
     }
 }

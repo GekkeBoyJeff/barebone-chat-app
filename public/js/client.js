@@ -43,6 +43,9 @@ newRoomButton.addEventListener('click', () => {
     rooms.appendChild(li);
 
     activeRoomName.textContent = roomName;
+
+    document.querySelector('section.active-chat').classList.remove('hide');
+    document.querySelector('aside').classList.remove('show');
   }  
   
   socket.on('loadMessages', (messages) => {
@@ -93,6 +96,16 @@ socket.on('roomList', (roomList) => {
 // close chat button
 var closeChat = document.querySelector('section.active-chat header button.close-chat');
 closeChat.addEventListener('click', () => {
-    document.querySelector('section.active-chat').classList.remove('active');
+    document.querySelector('section.active-chat').classList.add('hide');
+    document.querySelector('aside').classList.add('show');
 });
 
+// foreach room add eventlistener to open chat
+// const Myrooms = document.querySelectorAll('aside ul li');
+// Myrooms.forEach(room => {
+//     room.addEventListener('click', () => {
+//         console.log('hi')
+        // document.querySelector('section.active-chat').classList.remove('hide');
+        // document.querySelector('aside').classList.remove('show');
+//     })
+// });
