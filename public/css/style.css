@@ -73,44 +73,43 @@ section.active-chat form {
     justify-content: space-between;
     gap: 0.5em;
     flex-wrap: nowrap;
-    position: absolute;
-    bottom: 1em;
-    left: 0;
-    width: 100%;
+    position: relative;
+    width: 90%;
+    margin: 1em;
+    align-self: center;
     border-radius: .5em;
     overflow: hidden;
-    transform: scale(.95);
+    /* transform: scale(.95); */
 }
 
 section.active-chat form input,
 section.active-chat form button {
-    height: 4.5em;
+    min-height: 4.5em;
     border: none;
     background: unset;
 }
 
 section.active-chat form input {
-    flex: 1 1 10em;
+    /* flex: 1 1 23em; */
     padding: 1em;
 }
 
 section.active-chat form button {
     background: var(--primary-darker);
     color: #fff;
-    flex: 0 0 7.5em;
     font-size: .9em;
+    align-self: center;
+    width: 6em;
 }
 
 section.active-chat header {
     min-height: 4em;
     display: flex;
     align-items: center;
-    background: var(--radient-color);
-    box-shadow: 0 0 17px 0px var(--primary-darker);
     gap: .5em;
     padding: 0 1em;
     z-index: 1;
-    display: none;
+    background: #d0e0dc63;
 }
 
 section.active-chat ul {
