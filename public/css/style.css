@@ -261,10 +261,15 @@ aside span {
 }
 
 aside ul li {
-    background: rgb(0 0 0 / .2);
+    background: hsl(160deg 14.29% 91.76%);
+    /* filter: saturate(0.1); */
     padding: 1em;
     border-radius: .2em;
     color: rgb(255 255 255 / .85);
+    cursor: pointer;
+    transition: .5s;
+    color: black;
+    text-transform: capitalize;
 }
 
 p {
@@ -279,6 +284,7 @@ aside ul {
     margin-bottom: 1em;
     border-radius: .5em;
     overflow-x: hidden;
+    margin-right: -1em;
 }
 
 section.active-chat ul li.eigen-bericht {
@@ -347,6 +353,12 @@ section.active-chat header button {
     color: #092a2a;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+li.active {
+    background: hsl(180deg 100% 25.1%);
+    font-weight: 700;
+    color: white;
 }
 
 @media (max-width:800px) {

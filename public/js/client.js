@@ -3,6 +3,7 @@ const messages = document.querySelector('.active-chat ul');
 const input = document.querySelector('section.active-chat form input');
 const username = prompt('Wat is jouw naam?') || 'Anoniem';
 const userWelcome = document.querySelector('h2.yourName');
+const activeRoomName = document.querySelector('section.active-chat header h2');
 
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
@@ -40,6 +41,8 @@ newRoomButton.addEventListener('click', () => {
     const li = document.createElement('li');
     li.textContent = roomName;
     rooms.appendChild(li);
+
+    activeRoomName.textContent = roomName;
   }  
   
   socket.on('loadMessages', (messages) => {
@@ -58,6 +61,9 @@ socket.on('roomList', (roomList) => {
         joinRoom(roomName);
       });
       rooms.appendChild(li);
+      if(activeRoomName.textContent == roomName){
+        li.classList.add('active');
+      }
     });
   });  
 
