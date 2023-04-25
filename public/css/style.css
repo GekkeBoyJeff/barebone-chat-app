@@ -71,7 +71,6 @@ section.active-chat form {
     backdrop-filter: blur(1px);
     display: flex;
     justify-content: space-between;
-    gap: 0.5em;
     flex-wrap: nowrap;
     position: relative;
     width: 95%;
@@ -79,7 +78,6 @@ section.active-chat form {
     align-self: center;
     border-radius: .5em;
     overflow: hidden;
-    /* transform: scale(.95); */
 }
 
 section.active-chat form input,
@@ -92,6 +90,7 @@ section.active-chat form button {
 section.active-chat form input {
     /* flex: 1 1 23em; */
     padding: 1em;
+    width: 100%;
 }
 
 section.active-chat form button {
