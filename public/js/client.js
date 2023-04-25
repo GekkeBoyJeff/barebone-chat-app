@@ -9,6 +9,13 @@ socket.on('connect', () => {
     console.log('client socket.id', socket.id);
     userWelcome.textContent = username;
     joinRoom('Algemene Chat', true);
+
+    // if the screen size is smaller than 800px, show chat
+    if(window.innerWidth < 800){
+      console.log('hey')
+        document.querySelector('section.active-chat').classList.add('hide');
+        document.querySelector('aside').classList.add('show');
+    }
   });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {

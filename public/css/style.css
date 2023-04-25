@@ -265,7 +265,7 @@ aside span {
 aside ul li {
     background: hsl(160deg 14.29% 91.76%);
     /* filter: saturate(0.1); */
-    padding: 1em;
+    padding: 1.5em 1em;
     border-radius: .2em;
     color: rgb(255 255 255 / .85);
     cursor: pointer;
