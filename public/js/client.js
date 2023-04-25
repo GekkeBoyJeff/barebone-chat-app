@@ -2,10 +2,12 @@ const socket = io();
 const messages = document.querySelector('.active-chat ul');
 const input = document.querySelector('section.active-chat form input');
 const username = prompt('Wat is jouw naam?') || 'Anoniem';
+const userWelcome = document.querySelector('h2.yourName');
 
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
     socket.emit('message', {user: 'Server', text: `Welcome to the chat! ${username}`});
+    userWelcome.textContent = username;
 });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {
@@ -19,7 +21,7 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
 socket.on('message', (message) => {
     const element = document.createElement('li');
 
-    const user = document.createElement('address');
+    const user = document.createElement('address'); 
     user.textContent = message.user;
     user.classList.add('user');
 
