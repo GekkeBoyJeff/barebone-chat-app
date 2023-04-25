@@ -379,6 +379,11 @@ aside>h2:last-of-type {
     font-size: 1.2em;
 }
 
+section.active-chat header {
+    background: white;
+    margin: 1em;
+    border-radius: .5em;
+}
 
 @media (max-width:800px) {
     .hide {
