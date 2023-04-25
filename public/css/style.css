@@ -108,7 +108,7 @@ section.active-chat header {
     align-items: center;
     justify-content: space-between;
     gap: .5em;
-    padding: 0 1em;
+    padding: 0 0 0 1em;
     z-index: 1;
     background: #d0e0dc63;
 }
@@ -393,6 +393,12 @@ li.active {
 
     section.active-chat header button {
         display: flex;
+        background: rgb(0 0 0 / .2);
+        padding: .5em;
+        align-items: center;
+        height: 100%;
+        aspect-ratio: 1/1;
+        justify-content: center;
     }
 
     section.hide {
