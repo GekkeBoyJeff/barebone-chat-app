@@ -276,6 +276,10 @@ aside ul {
     display: flex;
     flex-direction: column;
     gap: .5em;
+    overflow-y: scroll;
+    margin-bottom: 1em;
+    border-radius: .5em;
+    overflow-x: hidden;
 }
 
 section.active-chat ul li.eigen-bericht {
@@ -322,6 +326,14 @@ form:has(input:focus-visible) {
 
 input[type="text"] {
     color: black;
+}
+
+aside ul::-webkit-scrollbar-thumb {
+    border: 4px solid #fff;
+}
+
+aside ul::-webkit-scrollbar-track {
+    background: #fff;
 }
 
 @media (max-width:800px) {

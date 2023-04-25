@@ -5,7 +5,7 @@ import path from 'path';
 
 import handleConnection from './events/connection.js';
 import handleDisconnect from './events/disconnect.js';
-import handleMessage from './events/message.js';
+// import handleMessage from './events/message.js';
 import handleRooms from './events/rooms.js';
 
 import dotenv from "dotenv"
@@ -33,7 +33,7 @@ app.get('/', (request, response) => {
 io.on('connection', (socket) => {
   handleConnection(socket);
   handleDisconnect(socket);
-  handleMessage(socket, io);
+  // handleMessage(socket, io);
   handleRooms(socket, io)
 });
 
