@@ -30,10 +30,11 @@ aside {
     flex: 0 1 20em;
     max-width: 25em;
     background: #fff;
-    padding: 1em 0 0 1em;
-    gap: 1em;
+    padding: 1em 0 1em 1em;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between;
 }
 
 section {
@@ -171,7 +172,7 @@ h1 {
 
 aside div {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 aside form {
@@ -285,10 +286,12 @@ aside ul {
     flex-direction: column;
     gap: .5em;
     overflow-y: scroll;
-    margin-bottom: 1em;
+    /* Scrollbar fallback */
+    overflow-y: overlay;
     border-radius: .5em;
     overflow-x: hidden;
-    margin-right: -1em;
+    height: 60vh;
+    /* padding: 0 0 2em 0; */
 }
 
 section.active-chat ul li.eigen-bericht {
@@ -309,13 +312,14 @@ li.eigen-bericht address.user {
 }
 
 .card {
-    background: #eaeef0;
+    background: #d0d3e1;
     padding: 1em;
     border-radius: .5em;
-    order: -1;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    height: 10%;
+    min-height: 4em;
+    flex-wrap: nowrap;
 }
 
 h1,
@@ -366,7 +370,6 @@ section.active-chat header button {
 li.active {
     background: #e0f2f1;
     font-weight: 700;
-    color: white;
     color: #2ca28a;
 }
 
@@ -427,4 +430,92 @@ section.active-chat header {
         padding: 0;
         margin: 1em;
     }
+
+    body:has(section.hide) main aside {
+        max-width: unset;
+    }
+}
+
+aside div div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+aside>div>* {
+    width: 100%;
+}
+
+h2.yourName {
+    width: auto;
+    max-width: 60%;
+    overflow: hidden;
+    font-size: 1.2em;
+}
+
+.card button {
+    width: 30%;
+    font-weight: 500;
+    color: red;
+}
+
+aside>div:first-of-type {
+    height: 90%;
+}
+
+main:has(section dialog[open]) section:nth-of-type(2n),
+main:has(section dialog[open]) aside {
+    display: none;
+}
+
+/* Dialog */
+::backdrop {
+    background: unset;
+}
+
+dialog#usernameDialog {
+    padding: 1em;
+    border: none;
+    border-radius: .5em;
+    left: auto;
+    right: 1em;
+    top: 1em;
+    min-height: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+input#usernameInput {
+    width: 100%;
+    padding: 1em;
+    border: .1em solid rgb(0 0 0 /.2);
+}
+
+form#usernameForm p label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+form#usernameForm {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form#usernameForm button {
+    background: var(--primary-darker);
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+    border-radius: .5em;
+}
+
+form#usernameForm button:hover {
+    transform: scale(1.05);
+}
+
+main:has(section dialog[open]) {
+    background: #9ec6cf;
 }

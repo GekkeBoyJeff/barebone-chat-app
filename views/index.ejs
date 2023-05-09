@@ -1,23 +1,36 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
 <main>
-
+<section class="intro">
+  <dialog id="usernameDialog">
+    <form id="usernameForm">
+        <p>
+            <label>Wat is jouw naam?:
+                <input type="text" id="usernameInput" required>
+            </label>
+        </p>
+        <button type="submit">OK</button>
+    </form>
+</dialog>
+</section>
 <aside class="show">
+  <div>
   <!-- chat screen left -->
   <div>
     <h1>Party Chat</h1>
     <button>+</button> <!-- Maak een nieuwe room -->
   </div>
-  <div class="card">
-    <h2 class="yourName">Anoniem</h2>
-  </div>
   <form> <!-- Form to search for chats -->
     <input type="text" autocomplete="on" placeholder="zoeken..."/>
     <button>Search</button>
   </form>
-  <span></span>
   <h2>Actieve chats</h2>
   <ul></ul>
+  </div>
+  <div class="card">
+    <h2 class="yourName">Anoniem</h2>
+    <button>Log out</button>
+  </div>
 </aside>
 <section class="active-chat hide"> <!-- active-chat -->
   <!-- chat window -->

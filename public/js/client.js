@@ -1,15 +1,18 @@
 const socket = io();
 const messages = document.querySelector('.active-chat ul');
 const input = document.querySelector('section.active-chat form input');
-const username = prompt('Wat is jouw naam?') || 'Anoniem';
 const userWelcome = document.querySelector('h2.yourName');
 const activeRoomName = document.querySelector('section.active-chat header h2');
 
+const usernameDialog = document.getElementById('usernameDialog');
+const usernameForm = document.getElementById('usernameForm');
+const usernameInput = document.getElementById('usernameInput');
+let username;
+
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
-    userWelcome.textContent = username;
-    joinRoom('Algemene Chat', true);
-
+    // Toon het dialoogvenster
+    usernameDialog.showModal(username);
     // if the screen size is smaller than 800px, show chat
     if(window.innerWidth < 800){
       console.log('hey')
@@ -48,12 +51,23 @@ newRoomButton.addEventListener('click', () => {
     const li = document.createElement('li');
     li.textContent = roomName;
     rooms.appendChild(li);
-
+  
     activeRoomName.textContent = roomName;
-
+  
     document.querySelector('section.active-chat').classList.remove('hide');
     document.querySelector('aside').classList.remove('show');
-  }  
+  }
+  
+  usernameForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    username = usernameInput.value || 'Anoniem';
+    userWelcome.textContent = username;
+    usernameDialog.close();
+  
+    // Call joinRoom after username has been set
+    joinRoom('Algemene Chat', true);
+  });
+  
   
   socket.on('loadMessages', (messages) => {
     document.querySelector('.active-chat ul').innerHTML = '';
@@ -107,12 +121,10 @@ closeChat.addEventListener('click', () => {
     document.querySelector('aside').classList.add('show');
 });
 
-// foreach room add eventlistener to open chat
-// const Myrooms = document.querySelectorAll('aside ul li');
-// Myrooms.forEach(room => {
-//     room.addEventListener('click', () => {
-//         console.log('hi')
-        // document.querySelector('section.active-chat').classList.remove('hide');
-        // document.querySelector('aside').classList.remove('show');
-//     })
-// });
+// Luister naar het verzenden van het formulier en sla de gebruikersnaam op
+usernameForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    username = usernameInput.value || 'Anoniem';
+    userWelcome.textContent = username;
+    usernameDialog.close();
+});
