@@ -173,10 +173,12 @@ h1 {
 aside div {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 aside form {
     display: flex;
+    width: 100%;
 }
 
 aside form button {
@@ -289,8 +291,9 @@ aside ul {
     overflow-y: overlay;
     border-radius: .5em;
     overflow-x: hidden;
-    height: 86%;
-    /* padding: 0 0 2em 0; */
+    height: 34.5em;
+    max-height: 86%;
+    padding: 0 0 5em 0;
     flex-basis: 100%;
 }
 
@@ -465,12 +468,22 @@ section.active-chat header {
         padding: 0;
         overflow: hidden;
     }
+
+    aside ul {
+        padding: unset;
+    }
+
+    aside div:first-of-type div:first-of-type {
+        height: 9em;
+    }
 }
 
 aside div div {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 1em;
+    height: inherit;
 }
 
 aside>div>* {
@@ -494,6 +507,7 @@ h2.yourName {
 aside>div:first-of-type {
     height: 90%;
     gap: 1em;
+    overflow: hidden;
 }
 
 main:has(section dialog[open]) section:nth-of-type(2n),
@@ -558,4 +572,5 @@ aside div div:first-of-type {
     flex-direction: column;
     justify-content: flex-start;
     gap: 1em;
+    height: 7.5em;
 }
