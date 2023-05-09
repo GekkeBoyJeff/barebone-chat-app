@@ -47,7 +47,7 @@
   </header>
   <ul></ul>
   <form> <!-- form to send message -->
-    <input type="text" autocomplete="off" />
+    <input type="text" pattern="^[^\s]+$" title="Eerste letter mag geen spatie zijn" required>
     <button>Send</button>
   </form>
 </section>

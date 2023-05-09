@@ -1,0 +1,1 @@
+export const usersOnline = new Map();

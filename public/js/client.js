@@ -57,6 +57,8 @@ newRoomButton.addEventListener('click', () => {
     rooms.appendChild(li);
   
     activeRoomName.textContent = roomName;
+
+    localStorage.setItem('currentRoom', roomName);
   
     document.querySelector('section.active-chat').classList.remove('hide');
     document.querySelector('aside').classList.remove('show');
@@ -70,6 +72,9 @@ newRoomButton.addEventListener('click', () => {
   
     // Call joinRoom after username has been set
     joinRoom('Algemene Chat', true);
+
+    // Stuur het setUsername event naar de server
+    socket.emit('setUsername', username);
   });
   
   
@@ -139,22 +144,31 @@ usernameForm.addEventListener('submit', (event) => {
 // Check of de gebruikersnaam al in Local Storage staat
 function checkLocalStorage(){
   console.log('start')
-    if(localStorage.getItem('username')){
-        username = localStorage.getItem('username');
-        userWelcome.textContent = username;
-        usernameDialog.close();
-        console.log('username', username) 
-            joinRoom('Algemene Chat', true);
+  if(localStorage.getItem('username')){
+      username = localStorage.getItem('username');
+      userWelcome.textContent = username;
+      usernameDialog.close();
+      console.log('username', username) 
 
-    }
+      // Stuur het setUsername event naar de server
+      socket.emit('setUsername', username);
+
+      // Haal de huidige kamer op uit de local storage, als deze bestaat
+      let currentRoom = localStorage.getItem('currentRoom');
+      if (currentRoom) {
+          joinRoom(currentRoom, true);
+      } else {
+          // Anders, ga naar de Algemene Chat
+          joinRoom('Algemene Chat', true);
+      }
+  }
 }
 
 document.querySelector('.card button').addEventListener('click', () => {
-  // Verwijder de gebruikersnaam uit Local Storage
-  localStorage.removeItem('username');
-  // Toon het dialoogvenster
-  usernameDialog.showModal();
+    // Verwijder de gebruikersnaam uit Local Storage
+    localStorage.removeItem('username');
+    // Verwijder ook de huidige kamer uit Local Storage
+    localStorage.removeItem('currentRoom');
+    // Toon het dialoogvenster
+    usernameDialog.showModal();
 });
-
-
-// geselecteerde room in local storage opslaan
