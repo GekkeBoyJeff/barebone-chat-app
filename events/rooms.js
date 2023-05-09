@@ -1,72 +1,63 @@
+// Importeer de benodigde modules
+import { fileURLToPath } from 'url';
+import path from 'path';
 import { usersOnline } from '../helpers/onlineUsers.js';
 
-// Maak een lege Map aan om alle chatrooms bij te houden
+// Maak een nieuwe Map voor alle chatrooms
 const rooms = new Map();
 
-// Dit is een functie die wordt aangeroepen wanneer een gebruiker een chatroom wil betreden, verlaten of een bericht wil sturen
+// Definieer een functie om de chatrooms te beheren
 const handleRooms = (socket, io) => {
-  let currentRoom; // Houd bij welke chatroom de gebruiker momenteel is binnengegaan
+  let currentRoom; // Houd bij in welke chatroom de gebruiker momenteel is
 
-  // Wanneer een gebruiker een chatroom wil betreden
+  // Luister naar het 'joinRoom' event wanneer een gebruiker een chatroom betreedt
   socket.on('joinRoom', ({ room, welcomeMessage, user }) => {
-    // Verlaat de huidige chatroom als de gebruiker al in een andere chatroom zit
     if (currentRoom) {
-      socket.leave(currentRoom);
+      socket.leave(currentRoom); // Verlaat de huidige chatroom
     }
-    // Ga de nieuwe chatroom binnen
     currentRoom = room;
-    socket.join(room);
-    // Als deze chatroom nog niet bestaat, maak dan een lege array aan om berichten bij te houden
+    socket.join(room); // Voeg de gebruiker toe aan de nieuwe chatroom
     if (!rooms.has(room)) {
-      rooms.set(room, []);
+      rooms.set(room, []); // Voeg de chatroom toe aan de lijst van chatrooms als deze nog niet bestaat
     }
-    // Laad eerder verzonden berichten in de chatroom
-    socket.emit('loadMessages', rooms.get(room));
-    // Stuur een welkomstbericht als deze optie is geselecteerd
+    socket.emit('loadMessages', rooms.get(room)); // Laad alle berichten in de chatroom van de gebruiker
     if (welcomeMessage) {
       const welcomeText = `Welcome to the chat! ${user}`;
-      io.to(room).emit('message', { user: 'Server', text: welcomeText });
+      io.to(room).emit('message', { user: 'Server', text: welcomeText }); // Stuur een welkomstbericht naar de chatroom
     }
-    // Stuur een bijgewerkte lijst met alle beschikbare chatrooms naar alle verbonden clients
-    io.emit('roomList', Array.from(rooms.keys()));
+    io.emit('roomList', Array.from(rooms.keys())); // Stuur een lijst van alle chatrooms naar alle gebruikers
   });
 
-  // Wanneer een gebruiker een bericht wil sturen
+  // Luister naar het 'message' event wanneer een gebruiker een bericht stuurt
   socket.on('message', async (message) => {
-    // Als de gebruiker geen chatroom heeft betreden, doe dan niets
-    if (!currentRoom) return;
-    // Voeg het bericht toe aan de lijst met berichten van de huidige chatroom en stuur het naar alle gebruikers in die chatroom
-    rooms.get(currentRoom).push(message);
-    io.to(currentRoom).emit('message', message);
+    if (!currentRoom) return; // Als er geen chatroom is, doe niets
+    rooms.get(currentRoom).push(message); // Voeg het bericht toe aan de lijst met berichten in de huidige chatroom
+    io.to(currentRoom).emit('message', message); // Stuur het bericht naar alle gebruikers in de chatroom
 
-    if (message.text.trim().startsWith('/')) {
-      const commandName = message.text.trim().slice(1);
-      const commandPath = path.join(__dirname, 'commands', `${commandName}.js`);
-  
+    if (message.text.trim().startsWith('/')) { // Als het bericht begint met een '/', verwerk het als een commando
+      const commandName = message.text.trim().slice(1); // Haal de naam van het commando op
+      const commandPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../commands', `${commandName}.js`); // Bepaal het pad naar het bestand met het commando
+
       try {
-        // Probeer het commando-bestand te lezen
-        const commandFile = await fs.readFile(commandPath, 'utf8');
+        const command = (await import(`file://${commandPath}`)).default; // Importeer het commando
+
         // Voer het commando uit en geef de huidige socket en usersOnline mee
-        (await import(commandPath)).default(usersOnline, socket);
+        command(usersOnline, socket);
       } catch (err) {
         // Als het bestand niet bestaat, doe niets
         if (err.code !== 'ENOENT') {
           console.error(err);
         }
       }
-  
-      return;
     }
-
-
   });
 
-  // Wanneer een gebruiker een chatroom wil verlaten
+  // Luister naar het 'leaveRoom' event wanneer een gebruiker een chatroom verlaat
   socket.on('leaveRoom', () => {
-    // Verlaat de huidige chatroom en zet de huidige chatroom terug naar null
-    socket.leave(currentRoom);
-    currentRoom = null;
+    socket.leave(currentRoom); // Verlaat de huidige chatroom
+    currentRoom = null; // Reset de huidige chatroom
   });
 };
 
+// Exporteer de functie
 export default handleRooms;

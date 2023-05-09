@@ -475,6 +475,11 @@ section.active-chat header {
     aside div:first-of-type div:first-of-type {
         height: 9em;
     }
+
+    section.active-chat form input,
+    section.active-chat form button {
+        height: 6em;
+    }
 }
 
 aside div div {
