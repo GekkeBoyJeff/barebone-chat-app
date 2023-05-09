@@ -9,13 +9,20 @@ const usernameForm = document.getElementById('usernameForm');
 const usernameInput = document.getElementById('usernameInput');
 let username;
 
+const rooms = document.querySelector('aside ul');
+const newRoomButton = document.querySelector('aside button');
+
+checkLocalStorage();
+
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
     // Toon het dialoogvenster
-    usernameDialog.showModal(username);
+    if(!username){
+      usernameDialog.showModal(username);
+    }
+    
     // if the screen size is smaller than 800px, show chat
     if(window.innerWidth < 800){
-      console.log('hey')
         document.querySelector('section.active-chat').classList.add('hide');
         document.querySelector('aside').classList.add('show');
     }
@@ -34,11 +41,8 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
     displayMessage(message);
 });
 
+
 // rooms
-
-const rooms = document.querySelector('aside ul');
-const newRoomButton = document.querySelector('aside button');
-
 newRoomButton.addEventListener('click', () => {
     const roomName = prompt('Wat is de naam van de nieuwe kamer?');
     if (roomName) {
@@ -127,4 +131,27 @@ usernameForm.addEventListener('submit', (event) => {
     username = usernameInput.value || 'Anoniem';
     userWelcome.textContent = username;
     usernameDialog.close();
+
+    // Sla de gebruikersnaam op in Local Storage
+    localStorage.setItem('username', username);
+});
+
+// Check of de gebruikersnaam al in Local Storage staat
+function checkLocalStorage(){
+  console.log('start')
+    if(localStorage.getItem('username')){
+        username = localStorage.getItem('username');
+        userWelcome.textContent = username;
+        usernameDialog.close();
+        console.log('username', username) 
+            joinRoom('Algemene Chat', true);
+
+    }
+}
+
+document.querySelector('.card button').addEventListener('click', () => {
+  // Verwijder de gebruikersnaam uit Local Storage
+  localStorage.removeItem('username');
+  // Toon het dialoogvenster
+  usernameDialog.showModal();
 });

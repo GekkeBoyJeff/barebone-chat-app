@@ -495,6 +495,7 @@ form#usernameForm p label {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    text-transform: initial;
 }
 
 form#usernameForm {
