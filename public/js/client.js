@@ -22,10 +22,10 @@ socket.on('connect', () => {
     }
     
     // if the screen size is smaller than 800px, show chat
-    if(window.innerWidth < 800){
-        document.querySelector('section.active-chat').classList.add('hide');
-        document.querySelector('aside').classList.add('show');
-    }
+    // if(window.innerWidth < 800){
+    //     document.querySelector('section.active-chat').classList.add('hide');
+    //     document.querySelector('aside').classList.add('show');
+    // }
   });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {
@@ -159,7 +159,8 @@ function checkLocalStorage(){
           joinRoom(currentRoom, true);
       } else {
           // Anders, ga naar de Algemene Chat
-          joinRoom('Algemene Chat', true);
+          // joinRoom('Algemene Chat', true);
+          console.log('geen kamer')
       }
   }
 }
