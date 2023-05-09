@@ -275,10 +275,10 @@ aside ul li {
     cursor: pointer;
     transition: .5s;
     color: black;
-    text-transform: capitalize;
+    text-transform: unset;
 }
 
-p {
+p::first-letter {
     text-transform: capitalize;
 }
 
@@ -291,9 +291,9 @@ aside ul {
     overflow-y: overlay;
     border-radius: .5em;
     overflow-x: hidden;
-    height: 34.5em;
-    max-height: 86%;
-    padding: 0 0 5em 0;
+    height: 100%;
+    /* max-height: 86%; */
+    padding: 0 0 7em 0;
     flex-basis: 100%;
 }
 
@@ -329,7 +329,6 @@ h1,
 h2 {
     color: #525e5d;
     filter: brightness(0.5);
-    text-transform: capitalize;
 }
 
 form:has(input:focus-visible) {
@@ -483,7 +482,7 @@ aside div div {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1em;
-    height: inherit;
+    height: 85%;
 }
 
 aside>div>* {
@@ -505,7 +504,7 @@ h2.yourName {
 }
 
 aside>div:first-of-type {
-    height: 90%;
+    /* height: 90%; */
     gap: 1em;
     overflow: hidden;
 }
@@ -573,4 +572,9 @@ aside div div:first-of-type {
     justify-content: flex-start;
     gap: 1em;
     height: 7.5em;
+}
+
+h1::first-letter,
+h2::first-letter {
+    text-transform: capitalize;
 }
