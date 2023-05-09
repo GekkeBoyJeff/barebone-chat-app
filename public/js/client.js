@@ -10,7 +10,7 @@ const usernameInput = document.getElementById('usernameInput');
 let username;
 
 const rooms = document.querySelector('aside ul');
-const newRoomButton = document.querySelector('aside button');
+const newRoomButton = document.querySelector('.newChat');
 
 checkLocalStorage();
 
@@ -155,3 +155,6 @@ document.querySelector('.card button').addEventListener('click', () => {
   // Toon het dialoogvenster
   usernameDialog.showModal();
 });
+
+
+// geselecteerde room in local storage opslaan

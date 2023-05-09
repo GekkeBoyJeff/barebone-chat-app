@@ -18,14 +18,17 @@
   <!-- chat screen left -->
   <div>
     <h1>Party Chat</h1>
-    <button>+</button> <!-- Maak een nieuwe room -->
+    <form> <!-- Form to search for chats -->
+      <input type="text" autocomplete="on" placeholder="zoeken..."/>
+      <button>Search</button>
+    </form>
   </div>
-  <form> <!-- Form to search for chats -->
-    <input type="text" autocomplete="on" placeholder="zoeken..."/>
-    <button>Search</button>
-  </form>
-  <h2>Actieve chats</h2>
-  <ul></ul>
+  <div>
+    <h2>Actieve chats</h2>
+    <button class="newChat"><img src="assets/newMessage.svg" alt=""></button> <!-- Maak een nieuwe room -->
+    <ul></ul>
+  </div>
+  
   </div>
   <div class="card">
     <h2 class="yourName">Anoniem</h2>

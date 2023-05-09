@@ -187,7 +187,7 @@ aside form button {
 aside form input {
     width: 100%;
     border: unset;
-    background: rgb(0 0 0 / .1);
+    background: var(--bg-color-white);
     height: 4.5em;
     color: white;
     border-radius: .2em;
@@ -213,7 +213,6 @@ button {
 }
 
 aside div button {
-    background: var(--bg-color-white);
     aspect-ratio: 1/1;
     width: 2.5em;
     max-height: 2.5em;
@@ -290,8 +289,9 @@ aside ul {
     overflow-y: overlay;
     border-radius: .5em;
     overflow-x: hidden;
-    height: 60vh;
+    height: 86%;
     /* padding: 0 0 2em 0; */
+    flex-basis: 100%;
 }
 
 section.active-chat ul li.eigen-bericht {
@@ -312,7 +312,7 @@ li.eigen-bericht address.user {
 }
 
 .card {
-    background: #d0d3e1;
+    background: #f5f5f5;
     padding: 1em;
     border-radius: .5em;
     align-items: center;
@@ -371,6 +371,7 @@ li.active {
     background: #e0f2f1;
     font-weight: 700;
     color: #2ca28a;
+    order: -1;
 }
 
 section.active-chat header {
@@ -395,6 +396,7 @@ section.active-chat header {
 
     main {
         overflow: hidden;
+        background: #edf0f5;
     }
 
     aside {
@@ -433,6 +435,35 @@ section.active-chat header {
 
     body:has(section.hide) main aside {
         max-width: unset;
+        background: unset;
+    }
+
+    aside div:first-of-type div:first-of-type {
+        flex-direction: column;
+        padding: 1em;
+        background: #fff;
+        gap: 1em;
+        border-radius: .5em;
+    }
+
+    aside div div:last-of-type {
+        padding: 1em;
+        background: #fff;
+        max-height: 56vh;
+        border-radius: .5em;
+    }
+
+    aside ul li {
+        background: var(--bg-color-white);
+    }
+
+    .card {
+        background: #fff;
+    }
+
+    section.active-chat header {
+        padding: 0;
+        overflow: hidden;
     }
 }
 
@@ -457,10 +488,12 @@ h2.yourName {
     width: 30%;
     font-weight: 500;
     color: red;
+    text-align: right;
 }
 
 aside>div:first-of-type {
     height: 90%;
+    gap: 1em;
 }
 
 main:has(section dialog[open]) section:nth-of-type(2n),
@@ -519,4 +552,10 @@ form#usernameForm button:hover {
 
 main:has(section dialog[open]) {
     background: #9ec6cf;
+}
+
+aside div div:first-of-type {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1em;
 }
