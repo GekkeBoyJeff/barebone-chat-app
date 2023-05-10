@@ -136,6 +136,7 @@ usernameForm.addEventListener('submit', (event) => {
     username = usernameInput.value || 'Anoniem';
     userWelcome.textContent = username;
     usernameDialog.close();
+    hideChat();
 
     // Sla de gebruikersnaam op in Local Storage
     localStorage.setItem('username', username);
@@ -173,3 +174,8 @@ document.querySelector('.card button').addEventListener('click', () => {
     // Toon het dialoogvenster
     usernameDialog.showModal();
 });
+
+function hideChat(){
+    document.querySelector('section.active-chat').classList.add('hide');
+    document.querySelector('aside').classList.add('show');
+}
