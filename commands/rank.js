@@ -14,7 +14,8 @@ const rankCommand = (args, socket, usersOnline, room, rooms, saveChatHistory) =>
   fileData.map(player => {
     const rank = player.global.rank.rankName;
     const name = player.global.name;
-    const serverMessage = { user: 'Server', text: `The rank of ${name} is ${rank}.` };
+    const level = player.global.level;
+    const serverMessage = { user: 'Server', text: `The rank of ${name} is ${rank} while his level is ${level}` };
     socket.emit('message', serverMessage);
     socket.to(room).emit('message', serverMessage);
     rooms.get(room).push(serverMessage);
