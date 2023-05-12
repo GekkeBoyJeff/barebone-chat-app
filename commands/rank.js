@@ -15,7 +15,8 @@ const rankCommand = (args, socket, usersOnline, room, rooms, saveChatHistory) =>
     const rank = player.global.rank.rankName;
     const name = player.global.name;
     const serverMessage = { user: 'Server', text: `The rank of ${name} is ${rank}.` };
-    socket.emit('message', serverMessage);
+    // socket.emit('message', serverMessage);
+    socket.to(room).emit('message', serverMessage);
     rooms.get(room).push(serverMessage);
     saveChatHistory(room);
   });

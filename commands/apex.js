@@ -22,7 +22,8 @@ const fetchCommand = async (args, socket, usersOnline, room, rooms, saveChatHist
       } else {
         fileData.push(data);
         fs.writeFileSync(filepath, JSON.stringify(fileData));
-        socket.emit('message', { user: 'Server', text: `Data for ${username} on ${platform} has been fetched successfully!` });
+        socket.to(room).emit('message', { user: 'Server', text: `Data for ${username} on ${platform} has been fetched successfully!` });
+        // socket.emit('message', { user: 'Server', text: `Data for ${username} on ${platform} has been fetched successfully!` });
       }
     } catch (error) {
       socket.emit('message', { user: 'Server', text: `Error: ${error.message}` });
