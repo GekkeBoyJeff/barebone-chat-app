@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 
-const fetchCommand = async (args, socket, usersOnline, room, rooms, saveChatHistory) => {
+const fetchCommand = async (args, socket , usersOnline, room, rooms, saveChatHistory) => {
   const [username, platform] = args.split(' ');
 
   const filepath = path.resolve('data.json');
