@@ -224,7 +224,7 @@ aside div button {
 }
 
 button:hover {
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 
 section.active-chat header img {
@@ -469,7 +469,7 @@ section.active-chat header {
     }
 
     aside ul {
-        padding: unset;
+        padding: 0 0 3em 0;
     }
 
     aside div:first-of-type div:first-of-type {
@@ -514,8 +514,8 @@ aside>div:first-of-type {
     overflow: hidden;
 }
 
-main:has(section dialog[open]) section:nth-of-type(2n),
-main:has(section dialog[open]) aside {
+main:has(section dialog#usernameDialog[open]) section:nth-of-type(2n),
+main:has(section dialog#usernameDialog[open]) aside {
     display: none;
 }
 
@@ -568,7 +568,7 @@ form#usernameForm button:hover {
     transform: scale(1.05);
 }
 
-main:has(section dialog[open]) {
+main:has(section dialog#usernameDialog[open]) {
     background: #9ec6cf;
 }
 
@@ -582,4 +582,59 @@ aside div div:first-of-type {
 h1::first-letter,
 h2::first-letter {
     text-transform: capitalize;
+}
+
+dialog#roomDialog {
+    padding: 1em;
+    border: none;
+    border-radius: .5em;
+    margin: auto;
+}
+
+form#roomForm button {
+    background: var(--primary-darker);
+    padding: 1em;
+    margin: 1em 0;
+    width: 100%;
+    border-radius: .5em;
+    color: white;
+    font-weight: 700;
+    flex: 0 0 50%;
+}
+
+#roomForm p label {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    font-weight: 500;
+}
+
+input#roomInput {
+    height: 4em;
+    border: none;
+    background: var(--bg-color-white);
+    border-radius: .5em;
+    padding: 1em;
+}
+
+dialog#roomDialog::backdrop {
+    background: rgb(0 0 0 /.5);
+    position: absolute;
+}
+
+form#roomForm button:first-of-type {
+    background: unset;
+    color: red;
+    font-weight: unset;
+    margin: unset;
+}
+
+dialog#roomDialog form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+dialog#roomDialog form p {
+    flex: 1 1 100%;
 }

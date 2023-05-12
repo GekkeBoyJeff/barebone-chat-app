@@ -3,7 +3,7 @@
 <main>
 <section class="intro">
   <dialog id="usernameDialog">
-    <form id="usernameForm">
+    <form id="usernameForm" method="dialog">
         <p>
             <label>Wat is jouw naam?
                 <input type="text" id="usernameInput" required>
@@ -11,6 +11,17 @@
         </p>
         <button type="submit">OK</button>
     </form>
+</dialog>
+<dialog id="roomDialog">
+  <form id="roomForm" method="dialog">
+      <p>
+          <label>Wat is de naam van de nieuwe kamer?
+              <input type="text" id="roomInput" required>
+          </label>
+      </p>
+      <button class="cancel-creation">Close</button>
+      <button type="submit">OK</button>
+  </form>
 </dialog>
 </section>
 <aside class="">

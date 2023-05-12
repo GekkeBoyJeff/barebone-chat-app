@@ -12,6 +12,10 @@ let username;
 const rooms = document.querySelector('aside ul');
 const newRoomButton = document.querySelector('.newChat');
 
+const roomDialog = document.getElementById('roomDialog');
+const roomForm = document.getElementById('roomForm');
+const roomInput = document.getElementById('roomInput');
+
 checkLocalStorage();
 
 socket.on('connect', () => {
@@ -43,12 +47,12 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
 
 
 // rooms
-newRoomButton.addEventListener('click', () => {
-    const roomName = prompt('Wat is de naam van de nieuwe kamer?');
-    if (roomName) {
-      joinRoom(roomName);
-    }
-  });
+// newRoomButton.addEventListener('click', () => {
+//     const roomName = prompt('Wat is de naam van de nieuwe kamer?');
+//     if (roomName) {
+//       joinRoom(roomName);
+//     }
+//   });
   
   function joinRoom(roomName, welcomeMessage = false) {
     socket.emit('joinRoom', { room: roomName, welcomeMessage, user: username });
@@ -179,3 +183,21 @@ function hideChat(){
     document.querySelector('section.active-chat').classList.add('hide');
     document.querySelector('aside').classList.add('show');
 }
+
+newRoomButton.addEventListener('click', () => {
+  roomDialog.showModal();
+});
+
+document.querySelector('.cancel-creation').addEventListener('click', () => {
+  roomDialog.close();
+});
+
+roomForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const roomName = roomInput.value;
+  if (roomName) {
+    joinRoom(roomName);
+    roomInput.value = '';
+    roomDialog.close();
+  }
+});
