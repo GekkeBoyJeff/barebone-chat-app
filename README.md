@@ -41,7 +41,7 @@ After that you can start the server by running `npm start` in the console
 --- 
 
 ## Data life cycle
-![[./gh-assets/cycle.png]]
+![](./gh-assets/cycle.png)
 1.  **User (Computer) Initiates WebSocket Connection**: The user opens the application on their computer, and the application initiates a WebSocket connection request with the web server.
     
 2.  **Web Server Confirms WebSocket Connection**: Upon receiving the user's connection request, the web server processes the request and sends a confirmation of the connection back to the user.
@@ -59,7 +59,7 @@ After that you can start the server by running `npm start` in the console
 ---
 
 ## API Data model
-![[./gh-assets/Diagram zonder titel.drawio.svg]]
+![](./gh-assets/diagram.svg)
 
 As you can see, the data from the API is quite complex, and not all data is accurate. Unfortunately, this is often the case when APIs are unofficial or not properly maintained.
 
@@ -98,22 +98,22 @@ Sadly I did not really have much feedback on what I could make out of this proje
 I changed the design quite a few times. I wanted it to look good but finding the right approach to making something look nice was hard. after a lot of struggling with the style I was able to transform my layout and UI.
 
 #### V1.
-![[./gh-assets/old-style.png]]
+![](./gh-assets/old-style.png)
 
 I had the general layout already in place but I wasn't sure on how to make it look more modern.
 
 #### V2.
-![[./gh-assets/new-style.png]]
+![](./gh-assets/new-style.png)
 
 After a bit of changing the style I came out with this. I did like the layout but it still wasn't quite right. just like the colors. They were all over the place and made it look messy.
 
 #### V3 (Final)
-![[./gh-assets/newest-style.png]]
+![./gh-assets/Chat Preview](gh-assets/newest-style.png)
 
 This is my most recent design. I evened the colors a lot more and chose what was important and what was not. I'm quite happy with the design change. And ofcourse it is mobile friendly aswell. but why show it here if you can see it for yourself at [Modern ES6 Node.js Chat (railway.app)](https://barebone-chat-app-production.up.railway.app/)
 
 #### Offline state
-![[./gh-assets/Pasted image 20230512234611.png]]
+![](./gh-assets/pasted.png)
 It does look cool, doesn't it? 😀
 
 ### Saving the data to JSON format
