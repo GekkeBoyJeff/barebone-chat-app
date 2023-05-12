@@ -24,12 +24,6 @@ socket.on('connect', () => {
     if(!username){
       usernameDialog.showModal(username);
     }
-    
-    // if the screen size is smaller than 800px, show chat
-    // if(window.innerWidth < 800){
-    //     document.querySelector('section.active-chat').classList.add('hide');
-    //     document.querySelector('aside').classList.add('show');
-    // }
   });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {
@@ -80,7 +74,6 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
     // Stuur het setUsername event naar de server
     socket.emit('setUsername', username);
   });
-  
   
   socket.on('loadMessages', (messages) => {
     document.querySelector('.active-chat ul').innerHTML = '';
@@ -152,11 +145,13 @@ function checkLocalStorage(){
   if(localStorage.getItem('username')){
       username = localStorage.getItem('username');
       userWelcome.textContent = username;
+      socket.emit('getRoomList'); // Vraag de lijst met kamers op vanuit de server
       usernameDialog.close();
       console.log('username', username) 
 
       // Stuur het setUsername event naar de server
       socket.emit('setUsername', username);
+
 
       // Haal de huidige kamer op uit de local storage, als deze bestaat
       let currentRoom = localStorage.getItem('currentRoom');

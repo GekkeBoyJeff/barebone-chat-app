@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 
-const fetchCommand = async (args, socket) => {
+const fetchCommand = async (args, socket, usersOnline, room, rooms, saveChatHistory) => {
   const [username, platform] = args.split(' ');
 
   const filepath = path.resolve('data.json');
@@ -28,6 +28,14 @@ const fetchCommand = async (args, socket) => {
       socket.emit('message', { user: 'Server', text: `Error: ${error.message}` });
     }
   }
+
+  const serverMessage = { user: 'Server', text: `Data for ${username} on ${platform} has been fetched successfully!` };
+  socket.emit('message', serverMessage);
+  rooms.get(room).push(serverMessage);
+  saveChatHistory(room);
+
 };
+
+
 
 export default fetchCommand;
