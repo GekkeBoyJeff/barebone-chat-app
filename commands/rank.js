@@ -11,7 +11,7 @@ const rankCommand = (args, socket, usersOnline, room, rooms, saveChatHistory) =>
 
   const fileData = JSON.parse(fs.readFileSync(filepath));
 
-  fileData.forEach(player => {
+  fileData.map(player => {
     const rank = player.global.rank.rankName;
     const name = player.global.name;
     const serverMessage = { user: 'Server', text: `The rank of ${name} is ${rank}.` };

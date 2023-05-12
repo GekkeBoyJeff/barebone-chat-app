@@ -206,3 +206,23 @@ roomForm.addEventListener('submit', (event) => {
     roomDialog.close();
   }
 });
+
+document.querySelector('.searchForm input').addEventListener('input', function(e) {
+  // Haal de huidige tekst uit de input
+  var filter = e.target.value.toUpperCase();
+
+  // Haal alle lijst items op
+  var li = document.querySelector('ul').getElementsByTagName('li');
+
+  // Loop door alle lijst items en verberg degene die niet overeenkomen met de zoekopdracht
+  for (var i = 0; i < li.length; i++) {
+    var txtValue = li[i].textContent || li[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+});
+document.querySelector('.searchForm').addEventListener('submit', (event) => {
+  event.preventDefault();});
