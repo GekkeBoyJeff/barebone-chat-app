@@ -58,9 +58,6 @@ const handleRooms = (socket, io) => {
     io.emit('roomList', Array.from(rooms.keys()));
   });
 
-  
-  
-
 // Luister naar het 'message' event wanneer een gebruiker een bericht stuurt
 socket.on('message', async (message) => {
   if (!currentRoom) return; // Als er geen chatroom is, doe niets
