@@ -18,12 +18,22 @@ const roomInput = document.getElementById('roomInput');
 
 checkLocalStorage();
 
+socket.on('disconnect', () => {
+    console.log('disconnected');
+    document.querySelector('section.active-chat form input').classList.add('disabled');
+    document.querySelector('section.active-chat form button').classList.add('disabled');
+    document.querySelector('.block').classList.add('visible');
+  });
+
 socket.on('connect', () => {
     console.log('client socket.id', socket.id);
     // Toon het dialoogvenster
     if(!username){
       usernameDialog.showModal(username);
     }
+    document.querySelector('section.active-chat form input').classList.remove('disabled');
+    document.querySelector('section.active-chat form button').classList.remove('disabled');
+    document.querySelector('.block').classList.remove('visible');
   });
 
 document.querySelector('section.active-chat form').addEventListener('submit', (event) => {

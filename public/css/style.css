@@ -638,3 +638,27 @@ dialog#roomDialog form {
 dialog#roomDialog form p {
     flex: 1 1 100%;
 }
+
+.block {
+    position: absolute;
+    z-index: 2;
+    background: #ffffffa6;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    display: grid;
+    place-content: center;
+    text-align: center;
+    justify-items: center;
+    padding: 2em;
+    gap: 1em;
+    display: none;
+}
+
+.block svg {
+    max-height: 73vh;
+}
+
+.block.visible {
+    display: grid;
+}
