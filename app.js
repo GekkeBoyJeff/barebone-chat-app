@@ -33,7 +33,6 @@ app.get('/', (request, response) => {
 io.on('connection', (socket) => {
   handleConnection(socket);
   handleDisconnect(socket);
-  // handleMessage(socket, io);
   handleRooms(socket, io)
 });
 

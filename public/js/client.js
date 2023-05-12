@@ -49,14 +49,7 @@ document.querySelector('section.active-chat form').addEventListener('submit', (e
     displayMessage(message);
 });
 
-
 // rooms
-// newRoomButton.addEventListener('click', () => {
-//     const roomName = prompt('Wat is de naam van de nieuwe kamer?');
-//     if (roomName) {
-//       joinRoom(roomName);
-//     }
-//   });
   
   function joinRoom(roomName, welcomeMessage = false) {
     socket.emit('joinRoom', { room: roomName, welcomeMessage, user: username });
