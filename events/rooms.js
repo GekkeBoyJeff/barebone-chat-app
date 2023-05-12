@@ -28,29 +28,35 @@ const handleRooms = (socket, io) => {
     io.emit('roomList', Array.from(rooms.keys())); // Stuur een lijst van alle chatrooms naar alle gebruikers
   });
 
-  // Luister naar het 'message' event wanneer een gebruiker een bericht stuurt
-  socket.on('message', async (message) => {
-    if (!currentRoom) return; // Als er geen chatroom is, doe niets
-    rooms.get(currentRoom).push(message); // Voeg het bericht toe aan de lijst met berichten in de huidige chatroom
-    io.to(currentRoom).emit('message', message); // Stuur het bericht naar alle gebruikers in de chatroom
+// Luister naar het 'message' event wanneer een gebruiker een bericht stuurt
+socket.on('message', async (message) => {
+  if (!currentRoom) return; // Als er geen chatroom is, doe niets
+  rooms.get(currentRoom).push(message); // Voeg het bericht toe aan de lijst met berichten in de huidige chatroom
+  io.to(currentRoom).emit('message', message); // Stuur het bericht naar alle gebruikers in de chatroom
 
-    if (message.text.trim().startsWith('/')) { // Als het bericht begint met een '/', verwerk het als een commando
-      const commandName = message.text.trim().slice(1); // Haal de naam van het commando op
-      const commandPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../commands', `${commandName}.js`); // Bepaal het pad naar het bestand met het commando
+  if (message.text.trim().startsWith('/')) { // Als het bericht begint met een '/', verwerk het als een commando
+    const commandText = message.text.trim().slice(1); // Haal het gedeelte na '/' op (commando en argumenten)
+    const [command, ...args] = commandText.split(' '); // Split het gedeelte op in commando en argumenten
 
-      try {
-        const command = (await import(`file://${commandPath}`)).default; // Importeer het commando
+    const commandPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../commands', `${command}.js`); // Bepaal het pad naar het bestand met het commando
 
+    try {
+      const commandModule = await import(`file://${commandPath}`); // Importeer het commando
+
+      if (typeof commandModule.default === 'function') {
         // Voer het commando uit en geef de huidige socket en usersOnline mee
-        command(usersOnline, socket);
-      } catch (err) {
-        // Als het bestand niet bestaat, doe niets
-        if (err.code !== 'ENOENT') {
-          console.error(err);
-        }
+        commandModule.default(args.join(' '), socket, usersOnline);
+      } else {
+        console.error(`Invalid command module: ${command}`);
+      }
+    } catch (err) {
+      // Als het bestand niet bestaat, doe niets
+      if (err.code !== 'ENOENT') {
+        console.error(err);
       }
     }
-  });
+  }
+});
 
   // Luister naar het 'leaveRoom' event wanneer een gebruiker een chatroom verlaat
   socket.on('leaveRoom', () => {
