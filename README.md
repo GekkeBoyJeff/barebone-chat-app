@@ -59,7 +59,7 @@ After that you can start the server by running `npm start` in the console
 ---
 
 ## API Data model
-![](./gh-assets/diagram.svg)
+![](./gh-assets/diagram2.svg)
 
 As you can see, the data from the API is quite complex, and not all data is accurate. Unfortunately, this is often the case when APIs are unofficial or not properly maintained.
 
