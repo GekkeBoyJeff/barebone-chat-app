@@ -2,7 +2,8 @@ Party Chat
 ============
 [![GitHub Issues](https://img.shields.io/github/issues/IgorAntun/node-chat.svg)](https://github.com/IgorAntun/node-chat/issues) [![Current Version](https://img.shields.io/badge/version-0.1-green.svg)](https://github.com/IgorAntun/node-chat) [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://igorantun.com/chat) 
 
-View the project live here at: [barebone chat app](https://barebone-chat-app-production.up.railway.app/)
+View the project live here at railway: [barebone chat app](https://barebone-chat-app-production.up.railway.app/)
+If the link above does not work, try this one instead at adaptable [barebone chat app](https://barebonechatapp.adaptable.app/)
 
 This is a node.js chat application powered by node.js, socket.io and Express that provides the main functions you'd expect from a chat, such as emojis and group conversations for now. You're able to fetch Apex Legends data with the /apex command. and more.
 
