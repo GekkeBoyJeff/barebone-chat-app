@@ -4,6 +4,7 @@ Party Chat
 
 View the project live here at railway: [barebone chat app](https://barebone-chat-app-production.up.railway.app/)
 If the link above does not work, try this one instead at adaptable [barebone chat app](https://barebonechatapp.adaptable.app/)
+- be warned though. Adaptable appears to to have errors with saving json files and reading them (which breaks some functionalities).
 
 This is a node.js chat application powered by node.js, socket.io and Express that provides the main functions you'd expect from a chat, such as emojis and group conversations for now. You're able to fetch Apex Legends data with the /apex command. and more.
 
